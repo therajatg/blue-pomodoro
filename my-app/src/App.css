@@ -55,3 +55,13 @@
 .weightedText {
   font-weight: 600;
 }
+
+.iconSizeSmall {
+  height: 1.8rem;
+  width: 1.8rem;
+}
+
+.iconSizeLarge {
+  height: 2.5rem;
+  width: 2.5rem;
+}

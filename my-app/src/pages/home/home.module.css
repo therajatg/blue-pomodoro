@@ -1,0 +1,6 @@
+.main {
+  margin: 5% 3rem 0 3rem;
+  color: var(--text-and-background-color);
+  height: 100vh;
+  background-color: #fffefc;
+}

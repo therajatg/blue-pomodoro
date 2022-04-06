@@ -1,0 +1,57 @@
+@import "https://parts-builder.netlify.app/styles/main-style.css";
+@import url("https://fonts.googleapis.com/css2?family=Spirax&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+:root {
+  --primary-color: #1877f2;
+  --primary-color-light: #60a2f6;
+  --text-and-background-color: #121212;
+  --secondary-color: #f3f4f6;
+  --line-color: #121212;
+  --rating-color: #388e3c;
+  --stylish-font: "Spirax", cursive;
+  --general-font: "Lato", sans-serif;
+  --default-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.marginOne {
+  margin: 3px;
+}
+
+.marginZero {
+  margin: 0;
+}
+
+.marginTwo {
+  margin: 9px;
+}
+.line {
+  height: 0.5px;
+  width: 100%;
+  background-color: var(--line-color);
+}
+
+.button-contained {
+  margin: 0;
+}
+
+.round-corner {
+  border-radius: 50%;
+}
+
+.heart-position {
+  position: absolute;
+  z-index: 1;
+}
+
+.heart-hover:hover {
+  cursor: pointer;
+}
+
+.paddingTop {
+  padding-top: 7rem;
+}
+
+.weightedText {
+  font-weight: 600;
+}

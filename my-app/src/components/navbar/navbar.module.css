@@ -1,0 +1,24 @@
+.logo {
+  cursor: pointer;
+  font-family: var(--stylish-font);
+  color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoColor {
+  color: var(--text-and-background-color);
+}
+
+.navigationContainer {
+  background-color: var(--secondary-color);
+  width: 100%;
+  z-index: 2;
+  justify-content: space-between;
+}
+
+.navOptions {
+  color: var(--text-and-background-color);
+}

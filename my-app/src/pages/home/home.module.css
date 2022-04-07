@@ -1,5 +1,8 @@
 .main {
-  margin: 5% 3rem 0 3rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10%;
+  margin: 5% 5rem 0 5rem;
   color: var(--text-and-background-color);
   height: 100vh;
   background-color: #fffefc;

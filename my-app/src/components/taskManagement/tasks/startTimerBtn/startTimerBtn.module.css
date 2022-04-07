@@ -1,0 +1,9 @@
+.startTimerBtn {
+  background-color: var(--rating-color);
+  color: var(--secondary-color);
+  border: none;
+  font-weight: 700;
+  font-size: large;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}

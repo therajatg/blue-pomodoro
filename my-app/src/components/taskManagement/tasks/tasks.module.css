@@ -1,26 +1,43 @@
 .main {
   box-shadow: var(--default-box-shadow);
   width: 100%;
-  min-height: 20%;
+  min-height: 20rem;
   border-radius: 1rem;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  row-gap: 5rem;
 }
 
 .hide {
   display: none;
 }
 
-.flex {
-  display: flex;
-  justify-content: space-between;
+.show {
+  display: block;
 }
 
-.startTimerBtn {
-  background-color: var(--rating-color);
-  color: var(--secondary-color);
-  border: none;
-  font-weight: 700;
+.inputDiv {
+  align-self: center;
+}
+
+.inputTask {
+  border: 2px solid var(--text-and-background-color);
+  border-radius: 0.4rem;
+  width: 50vw;
+  height: 2rem;
+}
+
+.addTaskButton {
+  padding: 0.4rem 1rem;
+  border-radius: 0.4rem;
+  font-weight: 600;
+}
+
+.taskList {
+  display: flex;
+  justify-content: space-between;
   font-size: large;
-  padding: 1rem;
-  border-radius: 0.5rem;
+  font-weight: 600;
 }

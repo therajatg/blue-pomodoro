@@ -6,7 +6,7 @@ function Home() {
     <div className={styles.main}>
       <WelcomeMsg />
       <TaskManagement />
-      <Timer />
+      <Timer className={styles.timer} />
     </div>
   );
 }

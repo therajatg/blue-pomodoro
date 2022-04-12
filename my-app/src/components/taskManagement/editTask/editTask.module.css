@@ -1,0 +1,14 @@
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.editText {
+  border: 2px solid var(--text-and-background-color);
+  border-radius: 0.4rem;
+  width: 50vw;
+  height: 2rem;
+}

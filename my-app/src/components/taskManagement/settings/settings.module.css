@@ -5,3 +5,32 @@
 .hide {
   display: none;
 }
+
+.main {
+  box-shadow: var(--default-box-shadow);
+  width: 100%;
+  min-height: 20rem;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.setTime {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  font-size: large;
+  font-weight: 600;
+}
+
+.input {
+  padding: 0.7rem 0.5rem;
+  border-radius: 10px;
+  max-width: 10rem;
+  font-size: large;
+  font-weight: 600;
+}

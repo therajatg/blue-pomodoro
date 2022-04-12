@@ -1,0 +1,19 @@
+.taskButton {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.4rem;
+  font-weight: 600;
+  font-size: large;
+}
+
+.settingsButton {
+  background-color: #e8e8e8;
+  color: var(--primary-color);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.4rem;
+  font-weight: 600;
+  font-size: large;
+}

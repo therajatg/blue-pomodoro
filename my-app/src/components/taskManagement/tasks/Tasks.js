@@ -1,47 +1,118 @@
 import styles from "./tasks.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
-// import { InputTask, TaskList } from "../index";
-// import { useTask } from "../../contexts/index";
-// import { GrEdit } from "react-icons/gr";
-// import { AiFillDelete } from "react-icons/ai";
-// import { useEffect } from "react";
-// import { FaUserInjured } from "react-icons/fa";
+import { StartTimerButton, EditTask, AddTag } from "../../index";
+import { useTask } from "../../../contexts/index";
+import { GrEdit } from "react-icons/gr";
+import { AiFillDelete } from "react-icons/ai";
+import { MdCancel } from "react-icons/md";
 
 function Tasks(prop) {
-  const [tasks, setTasks] = useState([]);
   const [input, setInput] = useState("");
-  const changeHandler = (e) => setInput(e.target.value);
-  const clickHandler = () => {
-    setTasks([...tasks, { id: uuid(), todo: input, isDone: false }]);
-    setInput("");
-  };
+  const { state, dispatch } = useTask();
+  const { tasks } = state;
 
-  const isDoneHandler = (id) => {
-    const newTaskList = tasks.map((item) =>
-      item.id === id ? { ...item, isDone: !item.isDone } : item
-    );
-    setTasks(newTaskList);
-    console.log("clicked");
-  };
+  useEffect(() => {
+    localStorage.setItem("savedTasks", JSON.stringify(tasks));
+  }, [tasks]);
+
+  const changeHandler = (e) => setInput(e.target.value);
+  console.log(typeof tasks[1].tagList);
+  console.log(typeof tasks);
 
   return (
     <div className={prop.value ? styles.main : styles.hide}>
-      {prop.name}
-      <input type="text" value={input} onChange={(e) => changeHandler(e)} />
-      <button onClick={clickHandler}>Add Task</button>
-
-      {tasks.map(({ id, todo, isDone }) => (
-        <div
-          key={id}
-          onClick={() => isDoneHandler(id)}
-          style={{ color: isDone ? "red" : "blue" }}
+      <div className={styles.inputDiv}>
+        <input
+          value={input}
+          onChange={(e) => changeHandler(e)}
+          className={styles.inputTask}
+        ></input>
+        <button
+          onClick={() => {
+            if (input !== "") {
+              dispatch({
+                type: "NEW_TASK",
+                payload: {
+                  todo: input,
+                  id: uuid(),
+                  isDone: false,
+                  isEdit: false,
+                  isTag: false,
+                  tagList: [],
+                },
+              });
+            }
+            setInput("");
+          }}
+          className={styles.addTaskButton}
         >
-          {todo}
-        </div>
-      ))}
+          Add
+        </button>
+      </div>
+      <div className={styles.taskList}>
+        {tasks.map(({ id, todo, isDone, isEdit, isTag, tagList }) => (
+          <div className={styles.singleTask} key={id}>
+            {isEdit && (
+              <div>
+                <EditTask id={id} />
+              </div>
+            )}
+            {!isEdit && (
+              <div>
+                <input
+                  type="checkbox"
+                  id={id}
+                  onChange={() => dispatch({ type: "IS_DONE", payload: id })}
+                  checked={isDone}
+                />
+                <label
+                  htmlFor={id}
+                  style={{ textDecoration: isDone ? "line-through" : "none" }}
+                >
+                  {todo}
+                </label>
+                <div className={styles.allTags}>
+                  {tagList.map((item) => (
+                    <div className={styles.tag} key={item.tagId}>
+                      <MdCancel
+                        onClick={() =>
+                          dispatch({
+                            type: "DELETE_TAG",
+                            payload: { id: id, tagId: item.tagId },
+                          })
+                        }
+                      />
+                      {item.tag}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {isTag && <AddTag id={id} />}
 
-      <button className={styles.startTimerBtn}>Start Focusing</button>
+            {!isTag && (
+              <div className={styles.updateItem}>
+                <GrEdit
+                  onClick={() => dispatch({ type: "EDIT", payload: id })}
+                />
+                <AiFillDelete
+                  onClick={() => {
+                    dispatch({ type: "DELETE", payload: id });
+                  }}
+                />
+                <button
+                  className={styles.addTag}
+                  onClick={() => dispatch({ type: "ADD_TAG", payload: id })}
+                >
+                  add tag
+                </button>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+      <StartTimerButton />
     </div>
   );
 }

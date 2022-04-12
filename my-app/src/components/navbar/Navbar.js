@@ -1,11 +1,9 @@
 import { BsMoonFill } from "react-icons/bs";
 import { FaBookOpen } from "react-icons/fa";
 import styles from "./navbar.module.css";
-import { useTask } from "../../contexts/index";
-import { useNavigate } from "react-router-dom"; //As soon as the user clicks start I want to navigate him to the clock which is present below on the same page (page should automatically scroll down).
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
-  const { state, dispatch } = useTask();
   const navigate = useNavigate();
 
   return (

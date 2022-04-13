@@ -4,5 +4,6 @@ export { TaskManagement } from "./taskManagement/TaskManagement";
 export { Timer } from "./timer/Timer";
 export { Tasks } from "./taskManagement/tasks/Tasks";
 export { Settings } from "./taskManagement/settings/Settings";
-// export { InputTask } from "./inputTask/InputTask";
-// export { TaskList } from "./taskList/TaskList";
+export { EditTask } from "./taskManagement/editTask/EditTask";
+export { StartTimerButton } from "./taskManagement/startTimerButton/StartTimerButton";
+export { AddTag } from "./taskManagement/addTag/AddTag";

@@ -1,14 +1,18 @@
-import { createContext, useContext, useReducer } from "react";
-import { taskReducer } from "../reducers/index";
+import { createContext, useContext, useState, useReducer } from "react";
+import { taskReducer } from "../reducers/taskReducer";
 
 const taskContext = createContext();
 const useTask = () => useContext(taskContext);
-const tasksFromLocalStorage = JSON.parse(localStorage.getItem("taskArray"));
+const tasksFromLocalStorage = localStorage.getItem("savedTasks")
+  ? JSON.parse(localStorage.getItem("savedTasks"))
+  : [];
 
 function TaskProvider({ children }) {
   const [state, dispatch] = useReducer(taskReducer, {
-    taskArray: tasksFromLocalStorage ? tasksFromLocalStorage : [],
+    tasks: tasksFromLocalStorage,
+    timer: { focus: null, break: null },
   });
+
   return (
     <taskContext.Provider value={{ state, dispatch }}>
       {children}

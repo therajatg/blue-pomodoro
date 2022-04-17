@@ -80,9 +80,6 @@ function taskReducer(state, action) {
       };
 
     case "FILTER_BY_TAG":
-      // return {
-      //   ...state,
-      // }
       return {
         ...state,
         tasks: state.tasks.filter((task) =>
@@ -105,5 +102,3 @@ function taskReducer(state, action) {
 }
 
 export { taskReducer };
-
-//ADD_TAG and similar jagah map ki jagah find chalega. do it after getting tags working properly.

@@ -1,4 +1,4 @@
-.taskButton {
+.isActive {
   background-color: var(--primary-color);
   color: var(--secondary-color);
   padding: 0.5rem 1rem;
@@ -8,7 +8,7 @@
   font-size: large;
 }
 
-.settingsButton {
+.notActive {
   background-color: #e8e8e8;
   color: var(--primary-color);
   padding: 0.5rem 1rem;

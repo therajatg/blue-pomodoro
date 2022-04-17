@@ -80,12 +80,21 @@ function taskReducer(state, action) {
       };
 
     case "FILTER_BY_TAG":
-      return {
-        ...state,
-        tasks: state.tasks.filter((task) =>
-          task.tagList.find((item) => item.tag === action.payload)
-        ),
-      };
+      if (action.payload === "seeAll") {
+        return {
+          ...state,
+          tasks: state.tasks.map((task) => ({ ...task, isFilter: true })),
+        };
+      } else {
+        return {
+          ...state,
+          tasks: state.tasks.map((task) =>
+            task.tagList.find((item) => item.tag === action.payload)
+              ? { ...task, isFilter: true }
+              : { ...task, isFilter: false }
+          ),
+        };
+      }
 
     case "TIMER":
       return {

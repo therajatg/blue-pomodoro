@@ -1,7 +1,7 @@
 import styles from "./tasks.module.css";
 import { useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
-import { StartTimerButton, EditTask, AddTag } from "../../index";
+import { StartTimerButton, EditTask, AddTag, FilterByTag } from "../../index";
 import { useTask } from "../../../contexts/index";
 import { GrEdit } from "react-icons/gr";
 import { AiFillDelete } from "react-icons/ai";
@@ -17,8 +17,6 @@ function Tasks(prop) {
   }, [tasks]);
 
   const changeHandler = (e) => setInput(e.target.value);
-  console.log(typeof tasks[1].tagList);
-  console.log(typeof tasks);
 
   return (
     <div className={prop.value ? styles.main : styles.hide}>
@@ -40,6 +38,7 @@ function Tasks(prop) {
                   isEdit: false,
                   isTag: false,
                   tagList: [],
+                  tagFilter: false,
                 },
               });
             }
@@ -50,67 +49,72 @@ function Tasks(prop) {
           Add
         </button>
       </div>
-      <div className={styles.taskList}>
-        {tasks.map(({ id, todo, isDone, isEdit, isTag, tagList }) => (
-          <div className={styles.singleTask} key={id}>
-            {isEdit && (
-              <div>
-                <EditTask id={id} />
-              </div>
-            )}
-            {!isEdit && (
-              <div>
-                <input
-                  type="checkbox"
-                  id={id}
-                  onChange={() => dispatch({ type: "IS_DONE", payload: id })}
-                  checked={isDone}
-                />
-                <label
-                  htmlFor={id}
-                  style={{ textDecoration: isDone ? "line-through" : "none" }}
-                >
-                  {todo}
-                </label>
-                <div className={styles.allTags}>
-                  {tagList.map((item) => (
-                    <div className={styles.tag} key={item.tagId}>
-                      <MdCancel
-                        onClick={() =>
-                          dispatch({
-                            type: "DELETE_TAG",
-                            payload: { id: id, tagId: item.tagId },
-                          })
-                        }
-                      />
-                      {item.tag}
-                    </div>
-                  ))}
+      <div>
+        <FilterByTag />
+        <div className={styles.taskList}>
+          {tasks.map(({ id, todo, isDone, isEdit, isTag, tagList }) => (
+            <div className={styles.singleTask} key={id}>
+              {isEdit && (
+                <div>
+                  <EditTask id={id} />
                 </div>
-              </div>
-            )}
-            {isTag && <AddTag id={id} />}
+              )}
+              {!isEdit && (
+                <div>
+                  <input
+                    type="checkbox"
+                    id={id}
+                    onChange={() => dispatch({ type: "IS_DONE", payload: id })}
+                    checked={isDone}
+                  />
+                  <label
+                    htmlFor={id}
+                    style={{
+                      textDecoration: isDone ? "line-through" : "none",
+                    }}
+                  >
+                    {todo}
+                  </label>
+                  <div className={styles.allTags}>
+                    {tagList.map((item) => (
+                      <div className={styles.tag} key={item.tagId}>
+                        <MdCancel
+                          onClick={() =>
+                            dispatch({
+                              type: "DELETE_TAG",
+                              payload: { id: id, tagId: item.tagId },
+                            })
+                          }
+                        />
+                        {item.tag}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {isTag && <AddTag id={id} />}
 
-            {!isTag && (
-              <div className={styles.updateItem}>
-                <GrEdit
-                  onClick={() => dispatch({ type: "EDIT", payload: id })}
-                />
-                <AiFillDelete
-                  onClick={() => {
-                    dispatch({ type: "DELETE", payload: id });
-                  }}
-                />
-                <button
-                  className={styles.addTag}
-                  onClick={() => dispatch({ type: "ADD_TAG", payload: id })}
-                >
-                  add tag
-                </button>
-              </div>
-            )}
-          </div>
-        ))}
+              {!isTag && (
+                <div className={styles.updateItem}>
+                  <GrEdit
+                    onClick={() => dispatch({ type: "EDIT", payload: id })}
+                  />
+                  <AiFillDelete
+                    onClick={() => {
+                      dispatch({ type: "DELETE", payload: id });
+                    }}
+                  />
+                  <button
+                    className={styles.addTag}
+                    onClick={() => dispatch({ type: "ADD_TAG", payload: id })}
+                  >
+                    add tag
+                  </button>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
       <StartTimerButton />
     </div>

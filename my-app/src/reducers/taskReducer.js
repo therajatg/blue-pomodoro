@@ -79,31 +79,17 @@ function taskReducer(state, action) {
         ),
       };
 
-    // let selectedIndex = state.tasks.findIndex(
-    //   (item) => item.id === action.payload.id
-    // );
-    // state.tasks.splice(selectedIndex, 1);
+    case "FILTER_BY_TAG":
+      // return {
+      //   ...state,
+      // }
+      return {
+        ...state,
+        tasks: state.tasks.filter((task) =>
+          task.tagList.find((item) => item.tag === action.payload)
+        ),
+      };
 
-    // return { ...state, tasks: [...state.tasks, selectedTask] };
-
-    // state.tasks
-    //   .find((item) => item.id === action.payload.id)
-    //   .tagList.splice(action.payload.index, 1);
-    // return state;
-    // return {
-    //   ...state,
-    //   tasks: state.tasks.map((item) =>
-    //     item.id === action.payload.id
-    //       ? {
-    //           ...item,
-    //           tagList: [
-    //             ...item.tagList,
-    //             item.tagList.splice(action.payload.index, 1),
-    //           ],
-    //         }
-    //       : item
-    //   ),
-    // };
     case "TIMER":
       return {
         ...state,

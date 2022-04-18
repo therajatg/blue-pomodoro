@@ -79,31 +79,23 @@ function taskReducer(state, action) {
         ),
       };
 
-    // let selectedIndex = state.tasks.findIndex(
-    //   (item) => item.id === action.payload.id
-    // );
-    // state.tasks.splice(selectedIndex, 1);
+    case "FILTER_BY_TAG":
+      if (action.payload === "seeAll") {
+        return {
+          ...state,
+          tasks: state.tasks.map((task) => ({ ...task, isFilter: true })),
+        };
+      } else {
+        return {
+          ...state,
+          tasks: state.tasks.map((task) =>
+            task.tagList.find((item) => item.tag === action.payload)
+              ? { ...task, isFilter: true }
+              : { ...task, isFilter: false }
+          ),
+        };
+      }
 
-    // return { ...state, tasks: [...state.tasks, selectedTask] };
-
-    // state.tasks
-    //   .find((item) => item.id === action.payload.id)
-    //   .tagList.splice(action.payload.index, 1);
-    // return state;
-    // return {
-    //   ...state,
-    //   tasks: state.tasks.map((item) =>
-    //     item.id === action.payload.id
-    //       ? {
-    //           ...item,
-    //           tagList: [
-    //             ...item.tagList,
-    //             item.tagList.splice(action.payload.index, 1),
-    //           ],
-    //         }
-    //       : item
-    //   ),
-    // };
     case "TIMER":
       return {
         ...state,
@@ -119,5 +111,3 @@ function taskReducer(state, action) {
 }
 
 export { taskReducer };
-
-//ADD_TAG and similar jagah map ki jagah find chalega. do it after getting tags working properly.

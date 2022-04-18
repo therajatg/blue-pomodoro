@@ -5,8 +5,8 @@ function Home() {
   return (
     <div className={styles.main}>
       <WelcomeMsg />
-      <TaskManagement />
       <Timer className={styles.timer} />
+      <TaskManagement />
     </div>
   );
 }

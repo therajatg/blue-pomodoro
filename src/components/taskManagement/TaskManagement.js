@@ -9,13 +9,13 @@ function TaskManagement() {
     <div>
       <button
         onClick={() => setDisplay({ tasks: true, settings: false })}
-        className={styles.taskButton}
+        className={display.tasks ? styles.isActive : styles.notActive}
       >
         Tasks
       </button>
       <button
         onClick={() => setDisplay({ tasks: false, settings: true })}
-        className={styles.settingsButton}
+        className={display.settings ? styles.isActive : styles.notActive}
       >
         Settings
       </button>

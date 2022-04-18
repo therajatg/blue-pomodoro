@@ -7,3 +7,4 @@ export { Settings } from "./taskManagement/settings/Settings";
 export { EditTask } from "./taskManagement/editTask/EditTask";
 export { StartTimerButton } from "./taskManagement/startTimerButton/StartTimerButton";
 export { AddTag } from "./taskManagement/addTag/AddTag";
+export { FilterByTag } from "./taskManagement/filterByTag/FilterByTag";

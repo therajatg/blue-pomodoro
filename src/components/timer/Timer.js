@@ -16,6 +16,7 @@ function Timer() {
     const addZero = (num) => (num < 10 ? "0" + num : num);
     const minutes = addZero(Math.floor(remainingTime / 60));
     const seconds = addZero(remainingTime % 60);
+    document.title = `Pomodoro - ${minutes}:${seconds}`;
 
     return (
       <div className={styles.timer}>
